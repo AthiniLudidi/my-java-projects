@@ -7,7 +7,6 @@ public class Main {
     //Main method
     public static void main(String[] args) {
         Random rand = new Random();
-        factors=new ArrayList<>();
         for (int x = 0; x < 10; x++) {
             int num = rand.nextInt(10000000);
             if (isPrime(num)) System.out.println(num + " is Prime");
@@ -16,7 +15,6 @@ public class Main {
                 System.out.println("Factors of " + num + ":\n");
                 for (int factor:factors)
                     System.out.println(factor);
-                factors.clear();
             }
             System.out.println("----------(_)------------(_)--------------------(_)----------");
         }
@@ -24,10 +22,12 @@ public class Main {
     }
 
     static boolean isPrime(int x) {
+        factors=new ArrayList<>();
 
-        if (isEven(x))      //first check if the number is even, if so then
+        if (isEven(x)){      //first check if the number is even, if so then
             return x == 2;  //return true if the number is 2. 2 is prime
-        else {
+       }
+ else {
             findFactors(x);
             factors.add(x);  //add x as it is divisible by itself
             return factors.size() <= 2;
@@ -40,7 +40,7 @@ public class Main {
     static void findFactors(int num) {
 
         factors.add(1);
-        for (int x=2;x<(num/2); x++)
+        for (int x=2;x<=(num/2); x++)
             if (num % x == 0)
                 factors.add(x);
             //factors.add(num);
